@@ -65,7 +65,7 @@ var SliderExample = React.createClass({
           <ReactNative.Slider />
         </SliderContainer>
         <SliderContainer caption='<Slider/> with default style'>
-          <Slider />
+          <Slider thumbStyle={{alignItems: 'center', justifyContent: 'center'}} thumbContentCreator={() => <View style={{width: 5, height: 5, backgroundColor: 'red'}} />} />
         </SliderContainer>
         <SliderContainer caption='<Slider/> with min, max and custom tints '>
           <Slider

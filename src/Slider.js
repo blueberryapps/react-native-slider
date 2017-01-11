@@ -162,6 +162,8 @@ var Slider = React.createClass({
     * Used to configure the animation parameters.  These are the same parameters in the Animated library.
     */
     animationConfig : PropTypes.object,
+
+    thumbIcon: PropTypes.func
   },
   getInitialState() {
     return {
@@ -223,6 +225,10 @@ var Slider = React.createClass({
       || !styleEqual(this.props.trackStyle, nextProps.trackStyle)
       || !styleEqual(this.props.thumbStyle, nextProps.thumbStyle);
   },
+  _createThumbContent() {
+    const { thumbContentCreator } = this.props;
+    return thumbContentCreator ? thumbContentCreator() : null;
+  },
   render() {
     var {
       minimumValue,
@@ -278,7 +284,9 @@ var Slider = React.createClass({
               ...valueVisibleStyle
             }
           ]}
-        />
+        >
+          {this._createThumbContent()}
+        </Animated.View>
         <View
           style={[defaultStyles.touchArea, touchOverflowStyle]}
           {...this._panResponder.panHandlers}>
